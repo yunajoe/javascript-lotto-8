@@ -7,7 +7,7 @@ class Input {
 
   constructor(message) {
     if (!message) {
-      throw new Error('메시지를 입력해주세요');
+      throw new Error('[ERROR] 메시지를 입력해주세요');
     }
     this.message = message;
   }
