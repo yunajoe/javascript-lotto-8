@@ -1,10 +1,16 @@
 import { INPUT_MESSAGE } from './const/input.js';
+import ValidationError from './error/validation-error.js';
 import Input from './input/read-input.js';
 
 class App {
   async run() {
-    const purchaseAmountInput = new Input(INPUT_MESSAGE.PURCHASE_AMOUNT);
-    purchaseAmountInput.getInputMessage();
+    try {
+      const purchaseAmountInput = new Input(INPUT_MESSAGE.PURCHASE_AMOUNT);
+      const input = await purchaseAmountInput.getInputMessage();
+      new ValidationError(input);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
