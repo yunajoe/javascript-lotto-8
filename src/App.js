@@ -3,6 +3,7 @@ import { INPUT_MESSAGE } from './const/input.js';
 import { LOTTO_PRICE } from './const/lotto.js';
 import ValidationError from './error/validation-error.js';
 import Input from './input/read-input.js';
+import LotteryTicket from './lotto/lottory-ticket.js';
 
 class App {
   async run() {
@@ -17,6 +18,7 @@ class App {
       console.log('\n');
       const aNumberOfTicket = calculateLotteryTicket(Number(input));
       Console.print(`${aNumberOfTicket}개를 구매하였습니다.`);
+      new LotteryTicket(aNumberOfTicket);
     } catch (error) {
       throw error;
     }
