@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import ValidationError from '../error/validation-error.js';
 
 class Input {
   // 필드
@@ -13,7 +14,8 @@ class Input {
   }
 
   async getInputMessage() {
-    await Console.readLineAsync(this.message);
+    const input = await Console.readLineAsync(this.message);
+    new ValidationError(input.trim());
   }
 }
 
