@@ -7,7 +7,7 @@ class App {
     try {
       const purchaseAmountInput = new Input(INPUT_MESSAGE.PURCHASE_AMOUNT);
       const input = await purchaseAmountInput.getInputMessage();
-      new ValidationError(input);
+      new ValidationError(input.trim());
     } catch (error) {
       throw error;
     }
