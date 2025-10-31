@@ -1,17 +1,22 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGE } from './const/input.js';
+import { LOTTO_PRICE } from './const/lotto.js';
 import ValidationError from './error/validation-error.js';
 import Input from './input/read-input.js';
-import Lotto from './Lotto.js';
 
 class App {
   async run() {
+    const calculateLotteryTicket = (amount) => {
+      return amount / LOTTO_PRICE;
+    };
+
     try {
       const purchaseAmountInput = new Input(INPUT_MESSAGE.PURCHASE_AMOUNT);
       const input = await purchaseAmountInput.getInputMessage();
       new ValidationError(input.trim());
-      const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      new Lotto(numbers);
+      console.log('\n');
+      const aNumberOfTicket = calculateLotteryTicket(Number(input));
+      Console.print(`${aNumberOfTicket}개를 구매하였습니다.`);
     } catch (error) {
       throw error;
     }
