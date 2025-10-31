@@ -11,8 +11,9 @@ describe('로또 클래스 테스트', () => {
   test('로또 번호에 중복된 숫자가 있으면 예외가 발생한다.', () => {
     expect(() => {
       new Lotto([1, 2, 3, 4, 5, 5]);
-    }).toThrow('[ERROR]');
+    }).toThrow('[ERROR] 중복된 숫자가 있으면 안됩니다.');
   });
+
   test.each([
     ['', 2, 3, 4, 5],
     ['테스트', 2, 3, 4, 5],
@@ -20,7 +21,7 @@ describe('로또 클래스 테스트', () => {
   ])('로또 번호가 숫자가 아닌 값이 있으면 예외가 발생한다. %s', (input) => {
     expect(() => {
       new Lotto([input]);
-    }).toThrow('[ERROR]');
+    }).toThrow('[ERROR] 숫자만 사용해야 합니다.');
   });
 
   test.each([
@@ -30,7 +31,7 @@ describe('로또 클래스 테스트', () => {
   ])('로또 번호가 1~45 사이가 아니면 예외가 발생한다. %s', (input) => {
     expect(() => {
       new Lotto([input]);
-    }).toThrow('[ERROR]');
+    }).toThrow('[ERROR] 로또 번호는 1 ~45 사이여야 합니다.');
   });
 
   test.each([
