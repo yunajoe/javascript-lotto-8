@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGE } from './const/input.js';
 import ValidationError from './error/validation-error.js';
 import Input from './input/read-input.js';
-import LotteryTicket from './lotto/lottory-ticket.js';
+import LotteryTicket from './lotto/lottery-ticket.js';
 
 class App {
   async run() {
