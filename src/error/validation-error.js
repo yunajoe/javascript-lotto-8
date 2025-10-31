@@ -18,7 +18,7 @@ class ValidationError extends Error {
       throw new Error('[ERROR] 1000원 미만 값은 입력할 수 없습니다.');
     }
 
-    if (!numInput % 1000 === 0) {
+    if (numInput % 1000 !== 0) {
       throw new Error(
         '[ERROR] 1000원으로 나누어 떨이지지 않는 값은 입력할 수 없습니다. '
       );
