@@ -1,15 +1,19 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
-import { LOTTO_TICKET } from '../const/lotto.js';
+import { LOTTO_PRICE, LOTTO_TICKET } from '../const/lotto.js';
 
 class LotteryTicket {
-  #number;
+  #amount;
 
-  constructor(number) {
-    if (!number) {
+  constructor(amount) {
+    if (!amount) {
       throw new Error('로또 티켓은 최소 1장 이상이여야 합니다.');
     }
-    this.#number = number;
-    this.#printLotteryTickets(number);
+    this.#amount = amount;
+    this.#run();
+  }
+
+  #calculateTheNumberOfLotteryTickets(amount) {
+    return amount / LOTTO_PRICE;
   }
 
   #printLotteryTickets(number) {
@@ -21,6 +25,14 @@ class LotteryTicket {
       );
       Console.print(lottoTicketArr);
     });
+  }
+
+  #run() {
+    const theNumberOfTicket = this.#calculateTheNumberOfLotteryTickets(
+      this.#amount
+    );
+    Console.print(`${theNumberOfTicket}개를 구매하였습니다.`);
+    this.#printLotteryTickets(theNumberOfTicket);
   }
 }
 
