@@ -8,6 +8,7 @@ class Lotto {
     this.#numbers = numbers;
   }
 
+  // TODO: Validation Error 로 상속받으면서 리팩토링 하기.
   #validate(numbers) {
     if (numbers.length !== 6) {
       throw new Error(LottoError.MIN_NUMBER);

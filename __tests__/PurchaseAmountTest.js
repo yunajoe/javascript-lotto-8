@@ -28,7 +28,7 @@ describe('로또 구입 금액 입력', () => {
       expect(() => {
         new PurchaseValidation(input);
       }).toThrow(
-        '[ERROR] 1000원으로 나누어 떨이지지 않는 값은 입력할 수 없습니다. '
+        '[ERROR] 1000원으로 나누어 떨어지지 않는 값은 입력할 수 없습니다.'
       );
     }
   );
