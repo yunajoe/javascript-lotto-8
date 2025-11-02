@@ -29,15 +29,11 @@ class LotteryTicket {
         LOTTO_TICKET.END,
         LOTTO_TICKET.NUM
       );
-      // Lotto validation 검증 통과가 되면은 lottoTickets에 넣기
       const lotto = new Lotto(lottoTicketArr);
-      this.#lottoTickets.push(lotto);
+      this.#lottoTickets.push(lotto.getNumbers());
+
       Console.print(`[${lotto.getNumbers().join(', ')}]`);
     });
-  }
-
-  getLottoTickets() {
-    return [...this.#lottoTickets];
   }
 
   #run() {
@@ -45,6 +41,10 @@ class LotteryTicket {
       this.#amount
     );
     this.#printLotteryTickets(theNumberOfTicket);
+  }
+
+  getLottoTickets() {
+    return [...this.#lottoTickets];
   }
 }
 

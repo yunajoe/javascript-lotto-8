@@ -2,8 +2,9 @@ import { INPUT_ERROR } from '../const/error.js';
 import ValidationError from '../error/validation-error.js';
 
 class BonusNumberValidation extends ValidationError {
-  // 외부 주입
   #winningNumbers;
+
+  #bonusNumber;
 
   constructor(input, winningNumbers) {
     super(input);
@@ -24,6 +25,11 @@ class BonusNumberValidation extends ValidationError {
     this.checkValidChar(numInput);
     this.checkNumberRange(numInput);
     this.#checkBonusNumberValid(numInput);
+    this.#bonusNumber = numInput;
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
   }
 }
 
