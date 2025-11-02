@@ -8,7 +8,6 @@ class WinningNumberValidation extends ValidationError {
   }
 
   #splitInputToArray(input) {
-    // const inputArr2 = input.split(',').filter((value) => value.trim());
     const inputArr = input
       .split(',')
       .filter((value) => value.trim())

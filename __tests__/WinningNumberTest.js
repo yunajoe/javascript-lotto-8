@@ -38,4 +38,13 @@ describe('당첨번호 입력', () => {
       }).toThrow('[ERROR] 로또 번호는 1 ~45 사이여야 합니다.');
     }
   );
+
+  test.each([['1,1,2,3,4,5'], ['1,2,3,4,5,1']])(
+    '입력한 숫자가 중복된 경우가 있는 경우 %s',
+    (input) => {
+      expect(() => {
+        new WinningNumberValidation(input);
+      }).toThrow('[ERROR] 중복된 숫자가 있으면 안됩니다.');
+    }
+  );
 });

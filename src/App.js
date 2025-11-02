@@ -22,6 +22,9 @@ class App {
       const bonusNumberInput = new Input(INPUT_MESSAGE.BONUS_NUMBER);
       const bonusNumber = await bonusNumberInput.getInputMessage();
       new BonusNumberValidation(bonusNumber.trim());
+      Console.print('\n');
+      Console.print('당첨통계');
+      Console.print('---');
     } catch (error) {
       throw error;
     }
