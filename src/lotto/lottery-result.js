@@ -45,13 +45,13 @@ class LotteryResult {
   #calculateProfitRate(result) {
     const pay = this.#validLottoTickets.length * 1000;
     console.log('pay', pay, result);
-    const profitSum = Object.entries(result).reduce((acc, [key, value]) => {
+    const profitSum = Object.entries(result).reduce((acc, [, value]) => {
       const { count, amount } = value;
       acc += count * amount;
       return acc;
     }, 0);
     const profitRate = (profitSum / pay) * 100;
-    const rounded = Math.round(profitRate * 10) / 10;
+    const rounded = profitRate.toFixed(2);
     return rounded;
   }
 
