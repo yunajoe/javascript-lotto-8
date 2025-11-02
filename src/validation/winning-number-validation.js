@@ -7,20 +7,23 @@ class WinningNumberValidation extends ValidationError {
     this.input = input;
   }
 
-  #validate(input) {
-    this.checkEmpty(input);
+  #splitInputToArray(input) {
+    // const inputArr2 = input.split(',').filter((value) => value.trim());
     const inputArr = input
       .split(',')
-      .filter((value) => value)
+      .filter((value) => value.trim())
       .map((item) => Number(item));
+    return inputArr;
+  }
 
+  #validate(input) {
+    this.checkEmpty(input);
+    const inputArr = this.#splitInputToArray(input);
     this.checkArrayLength(inputArr);
-
     inputArr.forEach((value) => {
       this.checkValidChar(value);
       this.checkNumberRange(value);
     });
-
     this.checkDuplicatedNumber(inputArr);
   }
 }

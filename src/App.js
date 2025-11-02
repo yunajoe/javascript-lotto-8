@@ -16,6 +16,7 @@ class App {
       Console.print('\n');
       const winningNumberInput = new Input(INPUT_MESSAGE.WINNING_NUMBER);
       const winningNumber = await winningNumberInput.getInputMessage();
+      console.log('winninerNumber ===>', winningNumber);
       new WinningNumberValidation(winningNumber);
     } catch (error) {
       throw error;
