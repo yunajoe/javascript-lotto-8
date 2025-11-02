@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGE } from './const/input.js';
 import Input from './input/read-input.js';
+import LotteryResult from './lotto/lottery-result.js';
 import LotteryTicket from './lotto/lottery-ticket.js';
 import BonusNumberValidation from './validation/bonus-number-validation.js';
 import PurchaseValidation from './validation/purchase-amount-validation.js';
@@ -17,14 +18,15 @@ class App {
       Console.print('\n');
       const winningNumberInput = new Input(INPUT_MESSAGE.WINNING_NUMBER);
       const winningNumber = await winningNumberInput.getInputMessage();
-      new WinningNumberValidation(winningNumber.trim());
+      const winningNumbers = new WinningNumberValidation(
+        winningNumber.trim()
+      ).getWinningNumber();
       Console.print('\n');
       const bonusNumberInput = new Input(INPUT_MESSAGE.BONUS_NUMBER);
       const bonusNumber = await bonusNumberInput.getInputMessage();
-      new BonusNumberValidation(bonusNumber.trim());
+      new BonusNumberValidation(bonusNumber.trim(), winningNumbers);
       Console.print('\n');
-      Console.print('당첨통계');
-      Console.print('---');
+      new LotteryResult(winningNumber, bonusNumber);
     } catch (error) {
       throw error;
     }

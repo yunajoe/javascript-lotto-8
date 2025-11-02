@@ -1,6 +1,8 @@
 import ValidationError from '../error/validation-error.js';
 
 class WinningNumberValidation extends ValidationError {
+  #winningNumber = [];
+
   constructor(input) {
     super(input);
     this.#validate(input);
@@ -24,6 +26,11 @@ class WinningNumberValidation extends ValidationError {
       this.checkNumberRange(value);
     });
     this.checkDuplicatedNumber(inputArr);
+    this.#winningNumber = inputArr;
+  }
+
+  getWinningNumber() {
+    return [...this.#winningNumber];
   }
 }
 

@@ -29,13 +29,9 @@ class LotteryTicket {
         LOTTO_TICKET.END,
         LOTTO_TICKET.NUM
       );
-
-      // Console.print(lottoTicketArr);
-
       // Lotto validation 검증 통과가 되면은 lottoTickets에 넣기
       const lotto = new Lotto(lottoTicketArr);
       this.#lottoTickets.push(lotto);
-      // Console.print(`[${lotto.getNumbers().join(', ')}]`);
       Console.print(`[${lotto.getNumbers().join(', ')}]`);
     });
   }

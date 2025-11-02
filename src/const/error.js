@@ -8,6 +8,7 @@ export const INPUT_ERROR = {
   INVALID_DIVISIBLE_AMOUNT:
     '[ERROR] 1000원으로 나누어 떨어지지 않는 값은 입력할 수 없습니다.',
   INVALID_TYPE: '[ERROR] 유효한 타입이 아닙니다.',
+  DUPLICATED_BONUS_NUMBER: '[ERROR] 당첨번호와 중복이 되었습니다.',
 };
 
 export const LottoError = {
