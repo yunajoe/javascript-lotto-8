@@ -1,5 +1,5 @@
 import PurchaseValidation from '../src/validation/purchase-amount-validation';
-// // npx jest PurchaseAmount
+// npx jest PurchaseAmount
 describe('로또 구입 금액 입력', () => {
   test.each([[''], ['          ']])('빈 문자열을 입력한 경우 %s', (input) => {
     expect(() => {
@@ -10,7 +10,7 @@ describe('로또 구입 금액 입력', () => {
   test.each([['abc'], ['@@@']])('숫자가 아닌 값을 입력한 경우 %s', (input) => {
     expect(() => {
       new PurchaseValidation(input);
-    }).toThrow('[ERROR] 숫자가 아닌 값을 입력할 수 없습니다.');
+    }).toThrow('[ERROR] 숫자만 사용해야 합니다.');
   });
 
   test.each([[0], [500], [999]])(

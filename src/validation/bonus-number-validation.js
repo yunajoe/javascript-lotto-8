@@ -9,8 +9,9 @@ class BonusNumberValidation extends ValidationError {
 
   #validate(input) {
     this.checkEmpty(input);
-    this.checkValidChar(input);
-    this.checkNumberRange(input);
+    const numInput = Number(input);
+    this.checkValidChar(numInput);
+    this.checkNumberRange(numInput);
   }
 }
 
