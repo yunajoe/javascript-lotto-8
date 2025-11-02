@@ -13,7 +13,7 @@ class ValidationError extends Error {
   }
 
   checkValidChar(input) {
-    if (input !== 0 && !Number(input)) {
+    if (Number(input) !== 0 && !Number(input)) {
       throw new Error('[ERROR] 숫자만 사용해야 합니다.');
     }
   }
