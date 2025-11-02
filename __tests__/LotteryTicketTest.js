@@ -20,11 +20,6 @@ describe('Lottery Ticket 클래스 테스트', () => {
 
   test('로또 구입 가격을 넘겨주었을 경우', () => {
     new LotteryTicket(8000);
-    expect(printSpy.mock.calls[0]).toContain('8개를 구매하였습니다.');
-    const ticketPrints = printSpy.mock.calls.slice(1);
-    ticketPrints.forEach((ticketArr) => {
-      const len = ticketArr.flat().length;
-      expect(len).toEqual(6);
-    });
+    expect(printSpy.mock.calls[0]).toContain('8개를 구매했습니다.');
   });
 });

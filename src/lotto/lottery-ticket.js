@@ -1,5 +1,5 @@
 import { Console, MissionUtils } from '@woowacourse/mission-utils';
-import { LottoTicketError } from '../const/error.js';
+import { INPUT_ERROR } from '../const/error.js';
 import { LOTTO_PRICE, LOTTO_TICKET } from '../const/lotto.js';
 import Lotto from '../Lotto.js';
 
@@ -10,15 +10,19 @@ class LotteryTicket {
 
   constructor(amount) {
     if (!amount) {
-      throw new Error(LottoTicketError.MIN_PURCHASE_AMOUNT);
+      throw new Error(INPUT_ERROR.EMPTY_INPUT);
     }
     this.#amount = amount;
     this.#run();
   }
 
+  #sortAscendingNumbers(numbers) {
+    return numbers.sort((a, b) => a - b);
+  }
+
   #calculateTheNumberOfLotteryTickets(amount) {
     const theNumberOfTicket = amount / LOTTO_PRICE;
-    Console.print(`${theNumberOfTicket}개를 구매하였습니다.`);
+    Console.print(`${theNumberOfTicket}개를 구매했습니다.`);
     return theNumberOfTicket;
   }
 
@@ -30,9 +34,10 @@ class LotteryTicket {
         LOTTO_TICKET.NUM
       );
       const lotto = new Lotto(lottoTicketArr);
-      this.#lottoTickets.push(lotto.getNumbers());
+      const ascendingNumbers = this.#sortAscendingNumbers(lotto.getNumbers());
+      this.#lottoTickets.push(ascendingNumbers);
 
-      Console.print(`[${lotto.getNumbers().join(', ')}]`);
+      Console.print(`[${ascendingNumbers.join(', ')}]`);
     });
   }
 
