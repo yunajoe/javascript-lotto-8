@@ -3,6 +3,17 @@ import Lotto from '../src/Lotto';
 // npx jest Lotto
 
 describe('로또 클래스 테스트', () => {
+  describe('정상 입력', () => {
+    test.each([
+      [[1, 2, 3, 4, 5, 6]],
+      [[10, 20, 30, 40, 41, 42]],
+      [[7, 8, 9, 10, 11, 12]],
+    ])('정상적인 로또 번호 배열 %s', (numbers) => {
+      const lotto = new Lotto(numbers);
+      expect(lotto.getNumbers()).toEqual(numbers);
+      expect(() => new Lotto(numbers)).not.toThrow();
+    });
+  });
   describe('예외 처리', () => {
     test.each([[[1, 2, 3, 4, 5, 6, 7]], [[1, 2, 3, 4, 5, 6, 45]]])(
       '입력한 값이 6개가 아니면은 예외가 발생한다. %s',

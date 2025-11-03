@@ -1,6 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import LotteryTicket from '../src/lotto/lottery-ticket';
-// npx jest LotteryTicket
+
 describe('Lottery Ticket 클래스 테스트', () => {
   let printSpy;
 

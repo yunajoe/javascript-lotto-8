@@ -1,39 +1,49 @@
 import BonusNumberValidation from '../src/validation/bonus-number-validation';
 
-// npx jest BonusNumber
 describe('보너스 번호 입력', () => {
   const winningNumbers = [1, 2, 3, 4, 5, 6];
-
-  test.each([[''], ['          ']])('빈 문자열을 입력한 경우 %s', (input) => {
-    expect(() => {
-      new BonusNumberValidation(input.trim(), winningNumbers);
-    }).toThrow('[ERROR] 빈 입력값은 입력할 수 없습니다.');
+  describe('정상처리', () => {
+    test.each([['7'], ['10'], ['45']])(
+      '보너스 번호가 정상적으로 입력된 경우 %s',
+      (input) => {
+        expect(() => {
+          new BonusNumberValidation(input, winningNumbers);
+        }).not.toThrow();
+      }
+    );
   });
-
-  test.each([['null'], ['false'], ['undefined'], ['TEST']])(
-    '보너스 번호로 숫자가 아닌 값이 있으면 예외가 발생한다. %s',
-    (input) => {
+  describe('예외처리', () => {
+    test.each([[''], ['          ']])('빈 문자열을 입력한 경우 %s', (input) => {
       expect(() => {
-        new BonusNumberValidation(input, winningNumbers);
-      }).toThrow('[ERROR] 숫자만 사용해야 합니다.');
-    }
-  );
+        new BonusNumberValidation(input.trim(), winningNumbers);
+      }).toThrow('[ERROR] 빈 입력값은 입력할 수 없습니다.');
+    });
 
-  test.each([['0'], ['46'], ['100']])(
-    '입력한 숫자가 1~45 범위를 벗어난 경우 %s',
-    (input) => {
-      expect(() => {
-        new BonusNumberValidation(input, winningNumbers);
-      }).toThrow('[ERROR] 로또 번호는 1 ~45 사이여야 합니다.');
-    }
-  );
+    test.each([['null'], ['false'], ['undefined'], ['TEST']])(
+      '보너스 번호로 숫자가 아닌 값이 있으면 예외가 발생한다. %s',
+      (input) => {
+        expect(() => {
+          new BonusNumberValidation(input, winningNumbers);
+        }).toThrow('[ERROR] 숫자만 사용해야 합니다.');
+      }
+    );
 
-  test.each([['1'], ['2'], ['3']])(
-    '보너스 번호가 당첨 번호와 중복되면 예외 발생 %s',
-    (input) => {
-      expect(() => {
-        new BonusNumberValidation(input, winningNumbers);
-      }).toThrow('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
-    }
-  );
+    test.each([['0'], ['46'], ['100']])(
+      '입력한 숫자가 1~45 범위를 벗어난 경우 %s',
+      (input) => {
+        expect(() => {
+          new BonusNumberValidation(input, winningNumbers);
+        }).toThrow('[ERROR] 로또 번호는 1 ~45 사이여야 합니다.');
+      }
+    );
+
+    test.each([['1'], ['2'], ['3']])(
+      '보너스 번호가 당첨 번호와 중복되면 예외 발생 %s',
+      (input) => {
+        expect(() => {
+          new BonusNumberValidation(input, winningNumbers);
+        }).toThrow('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+      }
+    );
+  });
 });
