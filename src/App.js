@@ -38,7 +38,7 @@ class App {
         validLottoTickets
       );
     } catch (error) {
-      throw error;
+      Console.print(error.message);
     }
   }
 }
