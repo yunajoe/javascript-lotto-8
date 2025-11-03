@@ -12,6 +12,7 @@ class PurchaseValidation extends ValidationError {
     const numInput = Number(input);
     this.checkValidChar(numInput);
     this.checkMinNum(numInput);
+    this.checkMaxNum(numInput);
     this.checkDivisibleByThousand(numInput);
   }
 }

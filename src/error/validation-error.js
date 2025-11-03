@@ -1,5 +1,9 @@
 import { INPUT_ERROR } from '../const/error.js';
-import { LOTTO_PRICE, LOTTO_TICKET } from '../const/lotto.js';
+import {
+  LOTTO_PRICE,
+  LOTTO_TICKET,
+  PURCHASE_MAX_AMOUNT,
+} from '../const/lotto.js';
 
 class ValidationError extends Error {
   constructor(input) {
@@ -24,12 +28,22 @@ class ValidationError extends Error {
   }
 
   /**
-   *
    * @param {number} input
    */
+
   checkMinNum(input) {
     if (input < LOTTO_PRICE) {
       throw new Error(INPUT_ERROR.MIN_PURCHASE_AMOUNT);
+    }
+  }
+
+  /**
+   *
+   * @param {number} input
+   */
+  checkMaxNum(input) {
+    if (input > PURCHASE_MAX_AMOUNT) {
+      throw new Error(INPUT_ERROR.MAX_PURCHASE_AMOUNT);
     }
   }
 
