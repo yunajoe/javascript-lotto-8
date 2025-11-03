@@ -31,7 +31,6 @@ class App {
         validWinningNumber
       ).getBonusNumber();
       Console.print('\n');
-      // 로또 계산
       new LotteryResult(
         validWinningNumber,
         validBonusNumber,
