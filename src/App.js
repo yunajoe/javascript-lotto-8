@@ -10,35 +10,51 @@ import WinningNumberValidation from './validation/winning-number-validation.js';
 class App {
   async run() {
     try {
-      const purchaseAmountInput = new Input(INPUT_MESSAGE.PURCHASE_AMOUNT);
-      const purchaseAmount = await purchaseAmountInput.getInputMessage();
-      new PurchaseValidation(purchaseAmount.trim());
-      Console.print('\n');
-      const validLottoTickets = new LotteryTicket(
-        Number(purchaseAmount.trim())
-      ).getLottoTickets();
-      Console.print('\n');
-      const winningNumberInput = new Input(INPUT_MESSAGE.WINNING_NUMBER);
-      const winningNumber = await winningNumberInput.getInputMessage();
-      const validWinningNumber = new WinningNumberValidation(
-        winningNumber.trim()
-      ).getWinningNumber();
-      Console.print('\n');
-      const bonusNumberInput = new Input(INPUT_MESSAGE.BONUS_NUMBER);
-      const bonusNumber = await bonusNumberInput.getInputMessage();
-      const validBonusNumber = new BonusNumberValidation(
-        bonusNumber.trim(),
-        validWinningNumber
-      ).getBonusNumber();
-      Console.print('\n');
-      new LotteryResult(
-        validWinningNumber,
-        validBonusNumber,
-        validLottoTickets
-      );
+      const purchaseAmount = await this.getPurchaseAmount();
+      const lottoTickets = this.generateLottoTickets(purchaseAmount);
+
+      const winningNumber = await this.getWinningNumber();
+      const bonusNumber = await this.getBonusNumber(winningNumber);
+
+      new LotteryResult(winningNumber, bonusNumber, lottoTickets);
     } catch (error) {
       Console.print(error.message);
     }
+  }
+
+  async getPurchaseAmount() {
+    const input = new Input(INPUT_MESSAGE.PURCHASE_AMOUNT);
+    const amount = (await input.getInputMessage()).trim();
+    new PurchaseValidation(amount);
+    Console.print('\n');
+    return Number(amount);
+  }
+
+  generateLottoTickets(purchaseAmount) {
+    const tickets = new LotteryTicket(purchaseAmount).getLottoTickets();
+    Console.print('\n');
+    return tickets;
+  }
+
+  async getWinningNumber() {
+    const input = new Input(INPUT_MESSAGE.WINNING_NUMBER);
+    const numbers = (await input.getInputMessage()).trim();
+    const validNumbers = new WinningNumberValidation(
+      numbers
+    ).getWinningNumber();
+    Console.print('\n');
+    return validNumbers;
+  }
+
+  async getBonusNumber(winningNumber) {
+    const input = new Input(INPUT_MESSAGE.BONUS_NUMBER);
+    const number = (await input.getInputMessage()).trim();
+    const validNumber = new BonusNumberValidation(
+      number,
+      winningNumber
+    ).getBonusNumber();
+    Console.print('\n');
+    return validNumber;
   }
 }
 
